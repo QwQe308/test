@@ -27,7 +27,7 @@ export const TD = {
       : (PlayerProgress.realityUnlocked() || TimeDimension(1).isProducing)),
     dilationEffect: () => {
       const baseEff = player.dilation.active
-        ? 0.75 * Effects.product(DilationUpgrade.dilationPenalty)
+        ? 0.85 * Effects.product(DilationUpgrade.dilationPenalty)
         : 1;
       return baseEff * (Effarig.isRunning ? Effarig.multDilation : 1);
     },

@@ -40,9 +40,9 @@ class InfinityDimensionState extends DimensionState {
     super(() => player.dimensions.infinity, tier);
     const UNLOCK_REQUIREMENTS = [
       undefined,
-      DC.E1100,
-      DC.E1900,
-      DC.E2400,
+      DC.E1000,
+      DC.E1800,
+      DC.E2350,
       DC.E10500,
       DC.E30000,
       DC.E45000,

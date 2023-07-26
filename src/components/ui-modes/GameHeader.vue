@@ -6,6 +6,8 @@ import HeaderPrestigeGroup from "./HeaderPrestigeGroup";
 
 import GameSpeedDisplay from "@/components/GameSpeedDisplay";
 
+import HeaderSpaceInfo from "./_HeaderSpaceInfo";
+
 export default {
   name: "GameHeader",
   components: {
@@ -14,6 +16,7 @@ export default {
     HeaderBlackHole,
     HeaderPrestigeGroup,
     GameSpeedDisplay,
+    HeaderSpaceInfo,
   },
   data() {
     return {
@@ -36,6 +39,7 @@ export default {
     <GameSpeedDisplay v-if="hasReality" />
     <br v-if="hasReality">
     <HeaderBlackHole />
+    <HeaderSpaceInfo />
   </div>
 </template>
 

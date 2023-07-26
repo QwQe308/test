@@ -1,4 +1,5 @@
 import { DC } from "../constants";
+import { Currency } from "../currency";
 
 import { DimensionState } from "./dimension";
 
@@ -666,11 +667,16 @@ export const AntimatterDimensions = {
     if (AntimatterDimension(1).amount.gt(0)) {
       player.requirementChecks.eternity.noAD1 = false;
     }
-    AntimatterDimension(1).produceCurrency(Currency.antimatter, diff);
+
+    let AMproc = AntimatterDimension(1).productionForDiff(diff)
     if (NormalChallenge(12).isRunning) {
-      AntimatterDimension(2).produceCurrency(Currency.antimatter, diff);
+        AMproc = AMproc.add(AntimatterDimension(2).productionForDiff(diff));
     }
+    let pendingAM = Decimal.pow10(player.antimatter.log10() ** (0.85)).add(AMproc)
+    player.antimatter = Decimal.pow10(pendingAM.log10() ** 0.85)
+
     // Production may overshoot the goal on the final tick of the challenge
     if (hasBigCrunchGoal) Currency.antimatter.dropTo(Player.infinityGoal);
+    if (hasBigCrunchGoal) player.antimatter = player.antimatter.min(Player.infinityGoal);
   }
 };
