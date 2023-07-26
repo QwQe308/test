@@ -668,12 +668,12 @@ export const AntimatterDimensions = {
       player.requirementChecks.eternity.noAD1 = false;
     }
 
-    let AMproc = AntimatterDimension(1).productionForDiff(diff)
+    let AMproc = AntimatterDimension(1).productionForDiff(diff);
     if (NormalChallenge(12).isRunning) {
         AMproc = AMproc.add(AntimatterDimension(2).productionForDiff(diff));
     }
-    let pendingAM = Decimal.pow10(player.antimatter.log10() ** (0.85)).add(AMproc)
-    player.antimatter = Decimal.pow10(pendingAM.log10() ** 0.85)
+    let pendingAM = Decimal.pow10(player.antimatter.log10() ** (0.85)).add(AMproc);
+    player.antimatter = Decimal.pow10(pendingAM.log10() ** 0.85);
 
     // Production may overshoot the goal on the final tick of the challenge
     if (hasBigCrunchGoal) Currency.antimatter.dropTo(Player.infinityGoal);
