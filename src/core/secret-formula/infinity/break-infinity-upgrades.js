@@ -43,7 +43,7 @@ export const breakInfinityUpgrades = {
   },
   galaxyBoost: {
     id: "postGalaxy",
-    cost: 5e11,
+    cost: 1e11,
     description: () => `All Galaxies are ${formatPercents(0.5)} stronger`,
     effect: 1.5
   },
@@ -92,12 +92,12 @@ export const breakInfinityUpgrades = {
   },
   autobuyMaxDimboosts: {
     id: "autobuyMaxDimboosts",
-    cost: 5e9,
+    cost: 1e8,
     description: "Unlock the buy max Dimension Boost Autobuyer mode"
   },
   autobuyerSpeed: {
     id: "autoBuyerUpgrade",
-    cost: 1e15,
+    cost: 1e14,
     description: "Autobuyers unlocked or improved by Normal Challenges work twice as fast"
   },
   tickspeedCostMult: rebuyable({
@@ -128,7 +128,7 @@ export const breakInfinityUpgrades = {
   }),
   ipGen: rebuyable({
     id: 2,
-    initialCost: 1e7,
+    initialCost: 1e5,
     costIncrease: 10,
     maxUpgrades: 10,
     effect: value => Player.bestRunIPPM.times(value / 20),
