@@ -9,7 +9,7 @@ import NewsTicker from "../NewsTicker";
 import GameSpeedDisplay from "@/components/GameSpeedDisplay";
 
 
-import HeaderSpaceInfo from "../_HeaderSpaceInfo";
+import HeaderSpaceInfo from "../MODHeaderSpaceInfo";
 
 export default {
   name: "ModernUi",

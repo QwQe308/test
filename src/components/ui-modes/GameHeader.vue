@@ -6,7 +6,7 @@ import HeaderPrestigeGroup from "./HeaderPrestigeGroup";
 
 import GameSpeedDisplay from "@/components/GameSpeedDisplay";
 
-import HeaderSpaceInfo from "./_HeaderSpaceInfo";
+import HeaderSpaceInfo from "./MODHeaderSpaceInfo";
 
 export default {
   name: "GameHeader",
