@@ -226,9 +226,12 @@ Currency.antimatter = new class extends DecimalCurrency {
   }
 
   get productionPerSecond() {
-    return NormalChallenge(12).isRunning
-      ? AntimatterDimension(1).productionPerRealSecond.plus(AntimatterDimension(2).productionPerRealSecond)
-      : AntimatterDimension(1).productionPerRealSecond;
+    let AMproc = AntimatterDimension(1).productionPerRealSecond;
+    if (NormalChallenge(12).isRunning) {
+        AMproc = AMproc.add(AntimatterDimension(2).productionPerRealSecond);
+    }
+    let pendingAM = Decimal.pow10(player.antimatter.log10() ** (1/0.9)).add(AMproc);
+    return Decimal.pow10(pendingAM.log10() ** 0.9).sub(player.antimatter);
   }
 
   get startingValue() {

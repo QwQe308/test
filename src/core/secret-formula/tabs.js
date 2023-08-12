@@ -496,5 +496,22 @@ export const tabs = [
         hidable: true
       }
     ]
-  }
+  },
+  {
+    key: "space",
+    name: "Space",
+    hideAt: 3,
+    id: 11,
+    hidable: true,
+    subtabs: [
+      {
+        key: "research",
+        name: "Space Research",
+        symbol: "R",
+        component: "AntimatterDimensionsTab",
+        id: 0,
+        hidable: true,
+      },
+    ]
+  },
 ];

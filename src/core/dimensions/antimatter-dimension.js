@@ -672,8 +672,9 @@ export const AntimatterDimensions = {
     if (NormalChallenge(12).isRunning) {
         AMproc = AMproc.add(AntimatterDimension(2).productionForDiff(diff));
     }
-    let pendingAM = Decimal.pow10(player.antimatter.log10() ** (0.85)).add(AMproc);
-    player.antimatter = Decimal.pow10(pendingAM.log10() ** 0.85);
+    let pendingAM = Decimal.pow10(player.antimatter.add(10).log10() ** (1/0.9)).add(AMproc);
+    player.AMproc = Decimal.pow10(pendingAM.log10() ** 0.9).sub(10).sub(player.antimatter).dividedBy(diff);
+    player.antimatter = Decimal.pow10(pendingAM.log10() ** 0.9).sub(10);
 
     // Production may overshoot the goal on the final tick of the challenge
     if (hasBigCrunchGoal) Currency.antimatter.dropTo(Player.infinityGoal);
