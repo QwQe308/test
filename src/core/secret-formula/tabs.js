@@ -483,7 +483,7 @@ export const tabs = [
     name: "Shop",
     newUIClass: "shop",
     hideAt: 1.5,
-    condition: () => Cloud.isAvailable,
+    condition: () => false,
     id: 10,
     hidable: true,
     subtabs: [
@@ -508,7 +508,7 @@ export const tabs = [
         key: "research",
         name: "Space Research",
         symbol: "R",
-        component: "AntimatterDimensionsTab",
+        component: "SpaceResearchTab",
         id: 0,
         hidable: true,
       },

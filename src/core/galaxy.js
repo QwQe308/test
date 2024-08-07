@@ -126,6 +126,10 @@ function galaxyReset() {
     player.dimensionBoosts = 0;
   }
   softReset(0);
+
+  SpaceResearchTierDetail[1].forEach(x => SpaceResearchRifts[x].reset())
+  SpaceResearchTierDetail[2].forEach(x => SpaceResearchRifts[x].refresh())
+
   if (Notations.current === Notation.emoji) player.requirementChecks.permanent.emojiGalaxies++;
   // This is specifically reset here because the check is actually per-galaxy and not per-infinity
   player.requirementChecks.infinity.noSacrifice = true;
@@ -155,6 +159,12 @@ export function requestGalaxyReset(bulk, limit = Number.MAX_VALUE) {
   Tutorial.turnOffEffect(TUTORIAL_STATE.GALAXY);
   galaxyReset();
   return true;
+}
+
+//added
+export function forceGalaxyReset(){
+  player.galaxies -= 1
+  galaxyReset()
 }
 
 function maxBuyGalaxies(limit = Number.MAX_VALUE) {

@@ -90,3 +90,9 @@ export * from "./tab-notifications";
 export * from "./speedrun";
 
 export * from "./automator/script-templates";
+
+//MOD
+
+export * from "./_MOD/spaceResearches"
+export * from "./_MOD/spaceResearchRift"
+export * from "./_MOD/space"

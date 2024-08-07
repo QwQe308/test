@@ -20,6 +20,9 @@ import { SingularityAutobuyerState } from "./singularity-autobuyer";
 import { TickspeedAutobuyerState } from "./tickspeed-autobuyer";
 import { TimeDimensionAutobuyerState } from "./time-dimension-autobuyer";
 import { TimeTheoremAutobuyerState } from "./time-theorem-autobuyer";
+import { T0AutoResearcherState } from "./_MOD/t0-auto-researcher";
+import { T1AutoResearcherState } from "./_MOD/t1-auto-researcher";
+import { T2AutoResearcherState } from "./_MOD/t2-auto-researcher";
 
 export const Autobuyer = {
   annihilation: new AnnihilationAutobuyerState(),
@@ -44,7 +47,11 @@ export const Autobuyer = {
   singularity: new SingularityAutobuyerState(),
   tickspeed: new TickspeedAutobuyerState(),
   timeDimension: TimeDimensionAutobuyerState.createAccessor(),
-  timeTheorem: new TimeTheoremAutobuyerState()
+  timeTheorem: new TimeTheoremAutobuyerState(),
+
+  T0AutoResearcher: new T0AutoResearcherState(),
+  T1AutoResearcher: new T1AutoResearcherState(),
+  T2AutoResearcher: new T2AutoResearcherState(),
 };
 
 export const Autobuyers = (function() {
@@ -70,6 +77,10 @@ export const Autobuyers = (function() {
     Autobuyer.darkMatterDimsAscension,
     Autobuyer.singularity,
     Autobuyer.annihilation,
+    
+    Autobuyer.T0AutoResearcher,
+    Autobuyer.T1AutoResearcher,
+    Autobuyer.T2AutoResearcher,
   ];
 
   const singleComplex = [

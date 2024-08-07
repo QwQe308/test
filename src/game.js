@@ -10,6 +10,7 @@ import { Cloud } from "./core/storage";
 import { supportedBrowsers } from "./supported-browsers";
 
 import Payments from "./core/payments";
+import { updateSpaceItems } from "./core/globals";
 
 if (GlobalErrorHandler.handled) {
   throw new Error("Initialization failed");
@@ -624,6 +625,15 @@ export function gameLoop(passDiff, options = {}) {
   if (!Enslaved.canAmplify) {
     Enslaved.boostReality = false;
   }
+
+
+
+  
+  //MOD related
+  updateSpaceItems(diff)
+
+
+
 
   // Stopping these checks after CREDITS_START reduces lag and allows for the glyph customization modal to appear
   if (GameEnd.endState < END_STATE_MARKERS.CREDITS_START) {

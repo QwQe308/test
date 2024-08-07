@@ -1,4 +1,5 @@
 import { DC } from "./constants";
+import { SpaceResearchRifts } from "./globals";
 
 class DimBoostRequirement {
   constructor(tier, amount) {
@@ -157,7 +158,9 @@ export class DimBoost {
   }
 
   static get imaginaryBoosts() {
-    return Ra.isRunning ? 0 : ImaginaryUpgrade(12).effectOrDefault(0) * ImaginaryUpgrade(23).effectOrDefault(1);
+    let imaginaryBoosts = Ra.isRunning ? 0 : ImaginaryUpgrade(12).effectOrDefault(0) * ImaginaryUpgrade(23).effectOrDefault(1)
+    imaginaryBoosts += SpaceResearchRifts.r21.effectValue[0]
+    return imaginaryBoosts;
   }
 
   static get totalBoosts() {
@@ -180,6 +183,7 @@ export function softReset(tempBulk, forcedADReset = false, forcedAMReset = false
   EventHub.dispatch(GAME_EVENT.DIMBOOST_BEFORE, bulk);
   player.dimensionBoosts = Math.max(0, player.dimensionBoosts + bulk);
   resetChallengeStuff();
+
   const canKeepDimensions = Pelle.isDoomed
     ? PelleUpgrade.dimBoostResetsNothing.canBeApplied
     : Perk.antimatterNoReset.canBeApplied;
@@ -198,6 +202,11 @@ export function softReset(tempBulk, forcedADReset = false, forcedAMReset = false
     Currency.antimatter.reset();
   }
   EventHub.dispatch(GAME_EVENT.DIMBOOST_AFTER, bulk);
+
+  //MOD
+  player.space = new Decimal(0)
+  SpaceResearchTierDetail[0].forEach(x => SpaceResearchRifts[x].reset())
+  SpaceResearchTierDetail[1].forEach(x => SpaceResearchRifts[x].refresh())
 }
 
 export function skipResetsIfPossible(enteringAntimatterChallenge) {

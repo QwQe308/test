@@ -1,4 +1,5 @@
 import { DC } from "./constants";
+import { SpaceResearchRifts } from "./globals";
 
 export function effectiveBaseGalaxies() {
   // Note that this already includes the "50% more" active path effect
@@ -179,7 +180,7 @@ export const Tickspeed = {
     let boughtTickspeed;
     if (Laitela.continuumActive) boughtTickspeed = this.continuumValue;
     else boughtTickspeed = player.totalTickBought;
-    return boughtTickspeed + player.totalTickGained;
+    return boughtTickspeed + player.totalTickGained + FreeTickspeed.extraAmount;
   },
 
   get perSecond() {
@@ -201,7 +202,8 @@ export const FreeTickspeed = {
   multToNext: 1.33,
 
   get amount() {
-    return player.totalTickGained;
+    let tickspeedAmount = player.totalTickGained + this.extraAmount
+    return tickspeedAmount;
   },
 
   get softcap() {
@@ -210,6 +212,11 @@ export const FreeTickspeed = {
       softcap += 100000;
     }
     return softcap;
+  },
+
+  get extraAmount() {
+    let extraTickspeeds = SpaceResearchRifts.r13.effectValue
+    return extraTickspeeds;
   },
 
   fromShards(shards) {

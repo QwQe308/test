@@ -165,6 +165,10 @@ export function secondSoftReset(enteringAntimatterChallenge) {
   player.records.thisInfinity.realTime = 0;
   Player.resetRequirements("infinity");
   AchievementTimers.marathon2.reset();
+
+  SpaceResearchTierDetail[1].forEach(x => SpaceResearchRifts[x].reset())   
+  SpaceResearchTierDetail[2].forEach(x => SpaceResearchRifts[x].reset())   
+  //SpaceResearchTierDetail[3].forEach(x => SpaceResearchRifts[x].refresh())
 }
 
 export function preProductionGenerateIP(diff) {

@@ -10,8 +10,8 @@ function chargedDimInfinityMult() {
 export const infinityUpgrades = {
   totalTimeMult: {
     id: "timeMult",
-    cost: 1,
-    description: "Antimatter Dimensions gain a multiplier based on time played",
+    cost: 1e100,
+    description: "Antimatter Dimensions gain a multiplier based on time played [PLACE HOLDER]",
     effect: () => Math.pow(Time.totalTimePlayed.totalMinutes / 2, 0.15),
     formatEffect: value => formatX(value, 2, 2),
     charged: {
@@ -89,7 +89,7 @@ export const infinityUpgrades = {
   },
   buy10Mult: {
     id: "dimMult",
-    cost: 1,
+    cost: 1e100,
     description: () => `Increase the multiplier for buying ${formatInt(10)} Antimatter Dimensions`,
     effect: () => 1.1,
     formatEffect: () => `${formatX(2, 0, 1)} ➜ ${formatX(2.2, 0, 1)}`,

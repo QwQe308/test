@@ -68,4 +68,13 @@ export class PlayerProgress {
   static infinityChallengeCompleted() {
     return InfinityChallenges.all.some(c => c.isCompleted);
   }
+
+  //added
+  static dimensionBoostUnlocked() {
+    return player.dimensionBoosts > 0 || this.galaxyUnlocked()
+  }
+
+  static galaxyUnlocked() {
+    return player.galaxies > 0 || this.infinityUnlocked()
+  }
 }

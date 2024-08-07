@@ -23,6 +23,7 @@ export default {
       isSacrificeUnlocked: false,
       isSacrificeAffordable: false,
       buy10Mult: new Decimal(0),
+      amMult: new Decimal(0),
       currentSacrifice: new Decimal(0),
       sacrificeBoost: new Decimal(0),
       disabledCondition: "",
@@ -79,8 +80,10 @@ export default {
       this.isSacrificeUnlocked = isSacrificeUnlocked;
 
       this.buy10Mult.copyFrom(AntimatterDimensions.buyTenMultiplier);
+      this.amMult = getAMMultplier()
 
       this.multiplierText = `Buy 10 Dimension purchase multiplier: ${formatX(this.buy10Mult, 2, 2)}`;
+      if(this.amMult.gt(1)) this.multiplierText += ` | Direct Antimatter Multplier: ${formatX(this.amMult, 2, 2)}`
       if (!isSacrificeUnlocked) return;
       this.isSacrificeAffordable = Sacrifice.canSacrifice;
       this.currentSacrifice.copyFrom(Sacrifice.totalBoost);

@@ -1,4 +1,6 @@
 <script>
+import HeaderSpaceInfo from "../tabs/_MOD-space/MODHeaderSpaceInfo.vue";
+
 import HeaderBlackHole from "./HeaderBlackHole";
 import HeaderChallengeDisplay from "./HeaderChallengeDisplay";
 import HeaderChallengeEffects from "./HeaderChallengeEffects";
@@ -6,7 +8,6 @@ import HeaderPrestigeGroup from "./HeaderPrestigeGroup";
 
 import GameSpeedDisplay from "@/components/GameSpeedDisplay";
 
-import HeaderSpaceInfo from "./MODHeaderSpaceInfo";
 
 export default {
   name: "GameHeader",

@@ -1,7 +1,7 @@
 import { AutomatorPanels } from "@/components/tabs/automator/AutomatorDocs";
 import { GlyphInfo } from "@/components/modals/options/SelectGlyphInfoDropdown";
 
-import { AUTOMATOR_MODE, AUTOMATOR_TYPE } from "./automator/automator-backend";
+import { AUTOMATOR_MODE, AUTOMATOR_TYPE } from "@/core/automator";
 import { DC } from "./constants";
 import { deepmergeAll } from "@/utility/deepmerge";
 import { GlyphTypes } from "./glyph-effects";
@@ -9,6 +9,48 @@ import { GlyphTypes } from "./glyph-effects";
 // This is actually reassigned when importing saves
 // eslint-disable-next-line prefer-const
 window.player = {
+  //MOD
+  space: DC.D0,
+  amProc: DC.D0,
+  spaceResearches: {
+    r11: {
+      progress: DC.D0,
+      pendingProgress: DC.D0,
+      active: false,
+    },
+    r12: {
+      progress: DC.D0,
+      pendingProgress: DC.D0,
+      active: false,
+    },
+    r13: {
+      progress: DC.D0,
+      pendingProgress: DC.D0,
+      active: false,
+    },
+    r21: {
+      progress: DC.D0,
+      pendingProgress: DC.D0,
+      active: false,
+    },
+    r22: {
+      progress: DC.D0,
+      pendingProgress: DC.D0,
+      active: false,
+    },
+    r31: {
+      progress: DC.D0,
+      pendingProgress: DC.D0,
+      active: false,
+    },
+    r32: {
+      progress: DC.D0,
+      pendingProgress: DC.D0,
+      active: false,
+    },
+  },
+
+  //original
   antimatter: DC.E1,
   dimensions: {
     antimatter: Array.range(0, 8).map(() => ({
@@ -58,6 +100,20 @@ window.player = {
   auto: {
     autobuyersOn: true,
     disableContinuum: false,
+    //MOD
+    T0AutoResearcher: {
+      isBought: false,
+      isActive: true
+    },
+    T1AutoResearcher: {
+      isBought: false,
+      isActive: true
+    },
+    T2AutoResearcher: {
+      isBought: false,
+      isActive: true
+    },
+    
     reality: {
       mode: 0,
       rm: DC.D1,
@@ -76,7 +132,7 @@ window.player = {
     },
     bigCrunch: {
       cost: 1,
-      interval: 150000,
+      interval: 100000,
       mode: 0,
       amount: DC.D1,
       increaseWithMult: true,
@@ -87,7 +143,7 @@ window.player = {
     },
     galaxy: {
       cost: 1,
-      interval: 20000,
+      interval: 10000,
       limitGalaxies: false,
       maxGalaxies: 1,
       buyMax: false,
@@ -97,7 +153,7 @@ window.player = {
     },
     dimBoost: {
       cost: 1,
-      interval: 4000,
+      interval: 2000,
       limitDimBoosts: false,
       maxDimBoosts: 1,
       limitUntilGalaxies: false,
@@ -109,7 +165,7 @@ window.player = {
     tickspeed: {
       isUnlocked: false,
       cost: 1,
-      interval: 500,
+      interval: 200,
       mode: AUTOBUYER_MODE.BUY_SINGLE,
       isActive: true,
       lastTick: 0,
@@ -124,7 +180,7 @@ window.player = {
         isUnlocked: false,
         cost: 1,
         interval: [500, 600, 700, 800, 900, 1000, 1100, 1200][tier],
-        bulk: 1,
+        bulk: 4,
         mode: AUTOBUYER_MODE.BUY_10,
         isActive: true,
         lastTick: 0,

@@ -1,5 +1,6 @@
 import { DC } from "../constants";
 import { Currency } from "../currency";
+import { SpaceResearchRifts } from "../globals";
 
 import { DimensionState } from "./dimension";
 
@@ -335,7 +336,7 @@ export function buyMaxDimension(tier, bulk = Infinity) {
 class AntimatterDimensionState extends DimensionState {
   constructor(tier) {
     super(() => player.dimensions.antimatter, tier);
-    const BASE_COSTS = [null, 10, 100, 1e4, 1e6, 1e9, 1e13, 1e18, 1e24];
+    const BASE_COSTS = [null, new Decimal(10), new Decimal(100), new Decimal(1e4), new Decimal(1e6), new Decimal(1e9), new Decimal(1e13), new Decimal(1e18), new Decimal(1e24)];
     this._baseCost = BASE_COSTS[tier];
     const BASE_COST_MULTIPLIERS = [null, 1e3, 1e4, 1e5, 1e6, 1e8, 1e10, 1e12, 1e15];
     this._baseCostMultiplier = BASE_COST_MULTIPLIERS[tier];
@@ -350,7 +351,7 @@ class AntimatterDimensionState extends DimensionState {
    */
   get costScale() {
     return new ExponentialCostScaling({
-      baseCost: NormalChallenge(6).isRunning ? this._c6BaseCost : this._baseCost,
+      baseCost: NormalChallenge(6).isRunning ? this._c6BaseCost.div(SpaceResearchRifts.r12.effectValue) : this._baseCost.div(SpaceResearchRifts.r12.effectValue),
       baseIncrease: NormalChallenge(6).isRunning ? this._c6BaseCostMultiplier : this._baseCostMultiplier,
       costScale: Player.dimensionMultDecrease,
       scalingCostThreshold: Number.MAX_VALUE
@@ -574,7 +575,7 @@ class AntimatterDimensionState extends DimensionState {
     const postBreak = (player.break && !NormalChallenge.isRunning) ||
       InfinityChallenge.isRunning ||
       Enslaved.isRunning;
-    return postBreak ? Decimal.MAX_VALUE : DC.E315;
+    return postBreak ? Decimal.MAX_VALUE : DC.E450;
   }
 
   get productionPerSecond() {
@@ -643,6 +644,9 @@ export const AntimatterDimensions = {
       Achievement(58)
     ).times(getAdjustedGlyphEffect("powerbuy10"));
 
+    mult = mult.mul(SpaceResearchRifts.r31.effectValue[0])
+
+    mult = mult.pow(SpaceResearchRifts.r31.effectValue[1])
     mult = mult.pow(getAdjustedGlyphEffect("effarigforgotten")).powEffectOf(InfinityUpgrade.buy10Mult.chargedEffect);
     mult = mult.pow(ImaginaryUpgrade(14).effectOrDefault(1));
 
@@ -672,9 +676,9 @@ export const AntimatterDimensions = {
     if (NormalChallenge(12).isRunning) {
         AMproc = AMproc.add(AntimatterDimension(2).productionForDiff(diff));
     }
-    let pendingAM = Decimal.pow10(player.antimatter.add(10).log10() ** (1/0.9)).add(AMproc);
-    player.AMproc = Decimal.pow10(pendingAM.log10() ** 0.9).sub(10).sub(player.antimatter).dividedBy(diff);
-    player.antimatter = Decimal.pow10(pendingAM.log10() ** 0.9).sub(10);
+
+    produceAM(AMproc, diff)
+    player.records.totalAntimatter = player.records.totalAntimatter.max(player.antimatter)
 
     // Production may overshoot the goal on the final tick of the challenge
     if (hasBigCrunchGoal) Currency.antimatter.dropTo(Player.infinityGoal);

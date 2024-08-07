@@ -1,22 +1,29 @@
 <script>
+import { getSpaceNerf } from "@/core/_MOD/space";
+import { getSpaceDivisor } from "@/core/_MOD/space";
 
 export default {
   name: "HeaderSpaceInfo",
   data() {
     return {
       space: new Decimal(0),
+      spaceDivisior: 1,
       nerf: new Decimal(0),
     };
   },
   computed: {
     effectDisplay() {
-      return `Space: ${format(this.space, 2, 3)} | AM ^ (1/${format(this.nerf, 2, 3)})`;
+        let spaceInfo = `Space: ${format(this.space, 2, 3)}`
+        if(this.spaceDivisior.neq(1)) spaceInfo += ` (after /${format(this.spaceDivisior, 2, 3)})`
+        spaceInfo += ` | AM ^ (1/${format(this.nerf, 2, 3)})`
+        return spaceInfo;
     },
   },
   methods: {
     update() {
-      this.space = Decimal.pow10(player.antimatter.add(10).log10() ** (1/0.9) / player.antimatter.add(10).log10()).sub(10).div(10);
-      this.nerf = this.space.add(1).mul(10).log10();
+      this.space = new Decimal(player.space);
+      this.spaceDivisior = getSpaceDivisor();
+      this.nerf = getSpaceNerf();
     },
   },
 };

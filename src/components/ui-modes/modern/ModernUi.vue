@@ -9,7 +9,7 @@ import NewsTicker from "../NewsTicker";
 import GameSpeedDisplay from "@/components/GameSpeedDisplay";
 
 
-import HeaderSpaceInfo from "../MODHeaderSpaceInfo";
+import HeaderSpaceInfo from "../../tabs/_MOD-space/MODHeaderSpaceInfo.vue";
 
 export default {
   name: "ModernUi",
